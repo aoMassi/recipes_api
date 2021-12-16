@@ -1,7 +1,7 @@
 # app/controllers/api/v1/restaurants_controller.rb
 class Api::V1::RecipesController < Api::V1::BaseController
-    acts_as_token_authentication_handler_for User, only: [:update, :create]
-    before_action :set_recipe, only: [:show,:update]
+    acts_as_token_authentication_handler_for User, except: [:show, :index]
+    before_action :set_recipe, only: [ :show, :destroy, :update ]  # Re-use this.
     def index
       @recipes = policy_scope(Recipe)
     end
@@ -26,6 +26,12 @@ class Api::V1::RecipesController < Api::V1::BaseController
       else
         render_error
       end
+    end
+
+    def destroy
+      @recipe.destroy
+      head :no_content
+
     end
       
   

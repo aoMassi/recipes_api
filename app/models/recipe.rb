@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   has_many :comments
-  validates :name, presence: true
+  validates :name, :description, presence: true
 
 end
