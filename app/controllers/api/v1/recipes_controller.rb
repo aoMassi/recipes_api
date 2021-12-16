@@ -1,6 +1,6 @@
 # app/controllers/api/v1/restaurants_controller.rb
 class Api::V1::RecipesController < Api::V1::BaseController
-    acts_as_token_authentication_handler_for User, only: [:update]
+    acts_as_token_authentication_handler_for User, only: [:update, :create]
     before_action :set_recipe, only: [:show,:update]
     def index
       @recipes = policy_scope(Recipe)
@@ -16,6 +16,19 @@ class Api::V1::RecipesController < Api::V1::BaseController
         render_error
       end
     end
+
+    def create
+      @recipe = Recipe.new(recipe_params)
+      @recipe.user = current_user
+      authorize @recipe
+      if @recipe.save
+        render :show, status: :created
+      else
+        render_error
+      end
+    end
+      
+  
         private
 
     def set_recipe
