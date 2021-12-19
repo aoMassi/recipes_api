@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require "open-uri"
 
 puts "Cleaning database"
 
@@ -13,13 +14,36 @@ User.destroy_all
 Recipe.destroy_all
 Comment.destroy_all
 
+url =  [
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941617/Recipes/photo-1626266800035-0f65355cb33a_syt53d.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941562/Recipes/photo-1629723448738-03475a1e536d_moyawp.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941538/Recipes/photo-1630316639103-ff40ddc7912f_pahvaw.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941488/Recipes/photo-1631255444914-69f8b115b096_wqldm0.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941445/Recipes/photo-1631788012442-633d4f91ad31_inaytg.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941416/Recipes/photo-1632229095740-8c75082087c5_cgftbr.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941385/Recipes/photo-1632370360608-6d7f2a012dc7_dp0lxw.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941350/Recipes/photo-1636983754415-947b2dd76701_fnm2zt.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941323/Recipes/photo-1633785587171-577b501d8dcb_yrrbup.jpg",
+  "https://res.cloudinary.com/dmkuoxijq/image/upload/v1639941227/Recipes/photo-1636450513541-87f5ae337ddc_t37jef.jpg"
+]
+
+
+
+
+
+
 puts "Creating user"
 
 user1 = User.create!(
   email: "user1@user.com",
   password: "password",
-  first_name: "Massi",
-  last_name: "A"
+  
+)
+
+user2 = User.create!(
+  email: "user2@user.com",
+  password: "password",
+
 )
 
 puts "Creating Recipe"
@@ -95,6 +119,12 @@ recipe10 = Recipe.create!(
   description: Faker::Food.description
   
 )
+
+
+Recipe.all.each do |recipe|
+    photo = URI.open(url.pop)
+    recipe.photos.attach(io: photo, filename: 'recipe.png', content_type: 'image/png')
+  end
 
 puts "Creating comment"
 
