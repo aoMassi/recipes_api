@@ -1,0 +1,6 @@
+<% @recipes.each do |recipe|%>
+  <li><%= recipe.name %></li>
+  <% @recipe.comments.each do |comment| %>
+    <%= comment.content %>
+  <% end %>
+<% end %>
