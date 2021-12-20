@@ -46,6 +46,11 @@ user2 = User.create!(
 
 )
 
+
+puts "Finished creating users"
+
+
+
 puts "Creating Recipe"
 
 recipe1 = Recipe.create!(
@@ -121,14 +126,15 @@ recipe10 = Recipe.create!(
 )
 
 
-Recipe.all.each do |recipe|
-    photo = URI.open(url.pop)
-    recipe.photos.attach(io: photo, filename: 'recipe.png', content_type: 'image/png')
-  end
+
+
+puts "Finished creating recipes"
+
 
 puts "Creating comment"
 
 recipe = Comment.create!(
+  user: user1,
   recipe: recipe1,
   content: Faker::Lorem.paragraph(sentence_count: 5)
   
@@ -136,6 +142,7 @@ recipe = Comment.create!(
 )
 
 comment2 = Comment.create!(
+  user: user1,
   recipe: recipe3,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -143,6 +150,7 @@ comment2 = Comment.create!(
 )
 
 comment3 = Comment.create!(
+  user: user1,
   recipe: recipe1,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -151,6 +159,7 @@ comment3 = Comment.create!(
 )
 
 comment4 = Comment.create!(
+  user: user1,
   recipe: recipe9,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -159,6 +168,7 @@ comment4 = Comment.create!(
 )
 
 comment5 = Comment.create!(
+  user: user1,
   recipe: recipe4,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -166,12 +176,14 @@ comment5 = Comment.create!(
 )
 
 comment6 = Comment.create!(
+  user: user1,
   recipe: recipe2,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
 )
 
 comment7 = Comment.create!(
+  user: user1,
   recipe: recipe9,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -179,6 +191,7 @@ comment7 = Comment.create!(
 )
 
 comment8 = Comment.create!(
+  user: user1,
   recipe: recipe4,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -186,6 +199,7 @@ comment8 = Comment.create!(
 )
 
 comment9 = Comment.create!(
+  user: user1,
   recipe: recipe2,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -194,6 +208,7 @@ comment9 = Comment.create!(
 
 
 comment10 = Comment.create!(
+  user: user1,
   recipe: recipe4,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -201,6 +216,7 @@ comment10 = Comment.create!(
 )
 
 comment11 = Comment.create!(
+  user: user1,
   recipe: recipe1,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -208,6 +224,7 @@ comment11 = Comment.create!(
 )
 
 comment12 = Comment.create!(
+  user: user1,
   recipe: recipe2,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -215,6 +232,7 @@ comment12 = Comment.create!(
 )
 
 comment13 = Comment.create!(
+  user: user1,
   recipe: recipe9,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -223,6 +241,7 @@ comment13 = Comment.create!(
 
 
 comment14 = Comment.create!(
+  user: user1,
   recipe: recipe10,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -231,6 +250,7 @@ comment14 = Comment.create!(
 
 
 comment15 = Comment.create!(
+  user: user1,
   recipe: recipe3,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
@@ -239,8 +259,11 @@ comment15 = Comment.create!(
 
 
 comment16 = Comment.create!(
+  user: user1,
   recipe: recipe2,
   content: Faker::Lorem.paragraph(sentence_count: 5)
 
 
 )
+
+puts "Finished creating comments"
